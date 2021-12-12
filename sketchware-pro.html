@@ -100,6 +100,9 @@ padding:23px 12px 4px 12px;
 font-size:10px;
 color:#bdbdbd;
 font-family:OS Regular;
+display:flex;
+overflow-x:scroll;
+white-space:nowrap;
 }
 .chipset span{
 border:.1px solid #707072;
@@ -167,11 +170,39 @@ object-fit: cover;
 
 	<div class="chipset" >
 		<span style="background:#F5511E;color:white;border-color:#F5511E" >V6.4.0 Beta</span>
+		<span style="background:#2196f3;color:white;border-color:#2196f3" id="views" >0 views</span>
+		<span style="background:#4CAF50;color:white;border-color:#4CAF50" id="dl" >0 downloads</span>
 		<span>App Maker</span>
 		<span>Sketchware Mod</span>
 	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script>
 
-	<button class="download-btn" onclick="window.open('https://github.com/Sketchware-Pro/Sketchware-Pro/releases/download/v6.4.0-beta.6/Sketchware.Pro.v6.4.0.Beta.6.apk')" >Download App</button>
+$.getJSON("https://api.countapi.xyz/hit/extremekrish.github.io/apps\sketchware-pro1", function(response) {
+    $("#views").text(response.value + " views");
+}); 
+$.getJSON("https://api.countapi.xyz/info/extremekrish.github.io-apps-sketchware-pro1/awesomeclick", function(response) {
+ $("#dl").text(response.value + " downloads");
+});
+
+</script>
+
+<script>
+function download(){
+window.open('https://github.com/Sketchware-Pro/Sketchware-Pro/releases/download/v6.4.0-beta.6/Sketchware.Pro.v6.4.0.Beta.6.apk')
+var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.countapi.xyz/hit/extremekrish.github.io-apps-sketchware-pro1/awesomeclick");
+    xhr.responseType = "json";
+    xhr.onload = function() {
+$.getJSON("https://api.countapi.xyz/info/extremekrish.github.io-apps-sketchware-pro1/awesomeclick", function(response) {
+ $("#dl").text(response.value + " downloads");
+});
+
+    }
+    xhr.send();
+}
+</script>
+	<button class="download-btn" onclick="download()" >Download App</button>
 	
 	<div class="description" >
 		Sketchware Pro v6.4.0 Beta 6<br>This is the beta version of Sketchware Pro<br><a style="color:#2196f3"  href="https://github.com/Sketchware-Pro/Sketchware-Pro/releases/tag/v6.4.0-beta.6" >https://github.com/Sketchware-Pro/Sketchware-Pro/releases/tag/v6.4.0-beta.6</a><br>.<br>.<br>Extreme Krish
@@ -187,52 +218,7 @@ object-fit: cover;
 		<img src="https://telegra.ph/file/b56b62b872a35e8f1f005.jpg" >
 		<img src="https://telegra.ph/file/4a793f0953c754544444b.jpg" >
 	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
 
-    var applist = {
-        1 : {
-            name : "PMusic",
-            pack : "com.extremekrish.apk",
-            icon : "https://i.imgur.com/NbgLRlt.jpg",
-            url : "https://code.sololearn.com/WShE7Fijk2lK/?ref=app",
-            about : "com.extremekrish.apk",
-            tags : ["UI & UX","Sketchware project"],
-            screenshots : ["","","",""],
-            owner : "Extreme_Krish"
-        }
-    }
-    
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var id = url.searchParams.get("id");
-    console.log(id);
-    
-    var cout = '';
-    for (i in applist) {
-if(applist[i].pack == id){
-getData(applist[i]);
-} else {
-if(id == applist[i].pack){
-
-} else {
-
-}
-}
-
-    }
-});
-
-
-
-
-
-function getData(map){
-document.querySelector(".titlendev").innerText = map.name
-
-}
-</script>
 <div class="store" ></div>
 </body>
 </html>
